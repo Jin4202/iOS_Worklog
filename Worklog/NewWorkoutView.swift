@@ -19,9 +19,13 @@ struct NewWorkoutView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .topLeading) {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color(red: 0.1, green: 0.1, blue: 0.1))
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                Button {
+                    dismiss()
+                } label: {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color(red: 0.1, green: 0.1, blue: 0.1))
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                }
                 
                 VStack(alignment: .leading) {
                     Button {
@@ -77,7 +81,7 @@ struct NewWorkoutView: View {
                     .padding([.horizontal, .bottom])
                     Button {
                         saveWorkout(
-                            Workout(id: UUID(), name: name, date: date, numberOfSets: Int(sets) ?? 0, numOfMusHits: 0, numOfPRs: Int(prs) ?? 0)
+                            Workout(id: UUID(), name: name, date: date, numberOfSets: Int(sets) ?? -1, numOfMusHits: 0, numOfPRs: Int(prs) ?? -1)
                         )
                         dismiss()
                     } label: {
